@@ -4,6 +4,8 @@ from .models import Kickrani
 from .serializer import KickraniSerializer
 from .serializer import DailyChartSerializer
 from .serializer import AnnualChartSerializer
+from .serializer import RiderSerializer
+from .serializer import ViolationSerializer
 from datetime import datetime
 from django.utils.dateformat import DateFormat
 import cv2
@@ -43,6 +45,20 @@ def annualChart(request):
 @api_view(['POST'])
 def kickraniCreate(request):
     serializer = KickraniSerializer(data=request.data)
+    if(serializer.is_valid()):
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def RiderCreate(request):
+    serializer = RiderSerializer(data=request.data)
+    if(serializer.is_valid()):
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def ViolationCreate(request):
+    serializer = ViolationSerializer(data=request.data)
     if(serializer.is_valid()):
         serializer.save()
     return Response(serializer.data)
@@ -97,8 +113,26 @@ def kickraniDB(request,origin_frame):
         #     return Response(serializer.data)
     serializer = KickraniSerializer(data=request) #data=request.data
     if(serializer.is_valid()):
-        print('DB 저장 완료')
+        print('table1 DB 저장 완료')
         serializer.save()
     else:
-        print('false')
+        print('table1 DB false')
+    return Response(serializer.data)
+
+def RiderDB(request):
+    serializer = RiderSerializer(data=request)
+    if(serializer.is_valid()):
+        print('table2 DB 저장 완료')
+        serializer.save()
+    else:
+        print('table2 DB false')
+    return Response(serializer.data)
+
+def ViolationDB(request):
+    serializer = ViolationSerializer(data=request)
+    if(serializer.is_valid()):
+        print('table3 DB 저장 완료')
+        serializer.save()
+    else:
+        print('table3 DB false')
     return Response(serializer.data)
