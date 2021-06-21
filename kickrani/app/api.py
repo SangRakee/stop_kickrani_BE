@@ -73,6 +73,7 @@ def dateHandler(date):
     date = date.replace(' ', '')
     return date
 
+
 def riderDB(request,py_data3):
     request['location'] = "서울특별시 서초구 서초동 1374"  #장소 임의로 추가
     imageName = dateHandler(request["datetime"])
@@ -144,9 +145,8 @@ def imageDB(request, origin_frame):
     else:
         print('table1 DB false')
 
-
-
     return Response(serializer.data)
+
 
 def informationDB(request):
     serializer = InformationSerializer(data=request)

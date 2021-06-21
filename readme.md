@@ -21,10 +21,19 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
+        <ul>
+        <li><a href="">Used Deivce</a></li>
+       </ul>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
+       <ul>
+        <li><a href="">Architecture</a></li>
+       </ul>
     </li>
+    <li>
+      <a href="#about-the-project">Trained Indicators</a>
+    </li>  
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -40,27 +49,54 @@
 
 
 
+
+
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
+This is the project detecting illegal electric scooter riders on the public street with unmanned device. And this **repository** contains the 2nd part of the detection (number of person/helmet, kickboard brand). It receives the rider data from **jetson nano** and detects the object with **YOLOv5** model and sends the data to Database.
+
 ![](/banner.jpg)
 
-**flow of the data**
+### Used Device
 
-- Jetson nano -> **AWS EC2 with GPU(this repository)** -> mysql
+- **AWS EC2 with GPU**
 - GPU : NVIDIA M60 8GB
 
 
 ### Built With
 
 * [Python 3.8.10](https://www.python.org/)
+
 * [Django 3.2.3](https://www.djangoproject.com/)
+
 * [pytorch 1.8.1](https://pytorch.org/)
+
 * [YOLOv5](https://github.com/ultralytics/yolov5)
+
 * [MQTT](https://mqtt.org/)
 
+### Architecture
 
+![](https://user-images.githubusercontent.com/45448869/120573177-201efd00-c458-11eb-9e45-4a5b39421264.png)
+
+## Trained Indicators
+
+| Model | number of dataset | mAP<sup>val<br>0.5 | mAP<sup>test<br>0.5|
+| ----------------- | --------------------- | ----------------------- | ------------------------ |
+| Rider (x) | 983 | 0.981 | 0.955 |
+| Kickboard (m)| 1500| 0.94 | 0.843 |
+| Person (s) | 712 | 0.992 | 0.978 |
+| helmet (m) | 629 | 0.984 | - |
+
+![](https://user-images.githubusercontent.com/45448869/120500749-0b148080-c3fc-11eb-9220-14953a88b572.gif)
+
+![](https://user-images.githubusercontent.com/45448869/120500745-09e35380-c3fc-11eb-96d0-838e13a10c13.gif)
+
+![](https://user-images.githubusercontent.com/45448869/120500741-08b22680-c3fc-11eb-88f3-ce37c9f6906e.gif)
+
+![](https://user-images.githubusercontent.com/45448869/120592863-823c2a00-c479-11eb-86ac-d953b6b64ae1.gif)
 
 <!-- GETTING STARTED -->
 
